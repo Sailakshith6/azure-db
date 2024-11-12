@@ -1,14 +1,14 @@
 output "mysql_server_name" {
   description = "The name of the MySQL server"
-  value       = azurerm_mysql_server.example.name
+  value       = azurerm_mysql_flexible_server.example.name
 }
 
 output "mysql_database_name" {
   description = "The name of the MySQL database"
-  value       = azurerm_mysql_database.example.name
+  value       = azurerm_mysql_flexible_database.example.name
 }
 
 output "mysql_server_fqdn" {
   description = "The FQDN of the MySQL server"
-  value       = azurerm_mysql_server.example.fqdn
+  value       = azurerm_mysql_flexible_server.example.fqdn
 }
