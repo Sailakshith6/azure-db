@@ -1,36 +1,20 @@
-resource "azurerm_resource_group" "example" {
-  name     = var.resource_group_name
-  location = var.location
+data "azurerm_resource_group" "example" {
+  name = var.resource_group_name
 }
 
-resource "azurerm_mysql_server" "example" {
-  name                = "mysql-${random_string.mysql_name.result}"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+resource "azurerm_mysql_flexible_server" "example" {
+  name                   = "mysql-${random_string.mysql_name.result}"
+  resource_group_name    = var.resource_group_name
+  location               = var.location
   administrator_login = var.mysql_admin_username
   administrator_password = var.mysql_admin_password
-  version             = var.mysql_version
-
   sku_name = var.sku_name
-  storage_mb = var.storage_mb
-  backup_retention_days = 7
-  geo_redundant_backup_enabled = false
-
-  tags = {
-    environment = "production"
-  }
 }
 
-resource "azurerm_mysql_database" "example" {
+resource "azurerm_mysql_flexible_database" "example" {
   name                = "db-${random_string.mysql_name.result}"
-  resource_group_name = azurerm_resource_group.example.name
-  server_name         = azurerm_mysql_server.example.name
-}
-
-resource "azurerm_mysql_firewall_rule" "example" {
-  name                = "example-firewall-rule"
-  resource_group_name = azurerm_resource_group.example.name
-  server_name         = azurerm_mysql_server.example.name
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "255.255.255.255"
+  resource_group_name =  var.resource_group_name
+  server_name         = azurerm_mysql_flexible_server.example.name
+  charset             = "utf8"
+  collation           = "utf8_unicode_ci"
 }
