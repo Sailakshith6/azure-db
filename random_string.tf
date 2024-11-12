@@ -3,5 +3,5 @@ resource "random_string" "mysql_name" {
   special = false
   upper   = false
   lower   = true
-  numberic  = true
+  numeric  = true
 }
