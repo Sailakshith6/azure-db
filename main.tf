@@ -9,10 +9,10 @@ resource "azurerm_mysql_server" "example" {
   location            = azurerm_resource_group.example.location
   administrator_login = var.mysql_admin_username
   administrator_password = var.mysql_admin_password
-  version             = "8.0"
+  version             = var.mysql_version
 
-  sku_name = "B_Gen5_1"
-  storage_mb = 5120
+  sku_name = var.sku_name
+  storage_mb = var.storage_mb
   backup_retention_days = 7
   geo_redundant_backup_enabled = false
 
