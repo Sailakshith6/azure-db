@@ -43,5 +43,23 @@ variable "mysql_admin_password" {
 variable "random_string_length" {
   description = "Length of the random string appended to resource names"
   type        = number
-  default     = 8
+  default     = 5
+}
+
+variable "mysql_version" {
+  description = "The version of the MySQL server"
+  type        = string
+#  default     = "8.0"
+}
+
+variable "sku_name" {
+  description = "The SKU of the MySQL server (e.g., B_Gen5_1)"
+  type        = string
+#  default     = "B_Gen5_1"
+}
+
+variable "storage_mb" {
+  description = "The storage size of the MySQL server in MB"
+  type        = number
+ # default     = 5120
 }
