@@ -1,26 +1,43 @@
-variable "location" {
-  description = "The Azure region where resources will be created"
+variable "subscription_id" {
+  description = "The subscription ID for the Azure account."
   type        = string
-  default     = "East US"
+}
+
+variable "client_id" {
+  description = "The client ID for Azure authentication."
+  type        = string
+}
+
+variable "client_secret" {
+  description = "The client secret for Azure authentication."
+  type        = string
+  sensitive   = true  # Mark as sensitive to avoid displaying in logs
+}
+
+variable "tenant_id" {
+  description = "The tenant ID for the Azure account."
+  type        = string
 }
 
 variable "resource_group_name" {
-  description = "The name of the resource group"
+  description = "The name of the Azure resource group."
   type        = string
-  default     = "example-rg"
+}
+
+variable "location" {
+  description = "The Azure location for resources."
+  type        = string
 }
 
 variable "mysql_admin_username" {
   description = "The administrator username for the MySQL server"
   type        = string
-  default     = "mysqladmin"
 }
 
 variable "mysql_admin_password" {
   description = "The administrator password for the MySQL server"
   type        = string
   sensitive   = true
-  default     = "P@ssw0rd1234"
 }
 
 variable "random_string_length" {
